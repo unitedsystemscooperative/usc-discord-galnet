@@ -4,7 +4,10 @@
   "description": "Retrieves and prints the Elite: Dangerous GalNet News articles",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start:dev": "ts-node src/index.ts",
+    "start": "node build/index.ts",
+    "build": "tsc",
+    "heroku-postbuild": "npm run build"
   },
   "author": "admiralfeb",
   "license": "ISC",
