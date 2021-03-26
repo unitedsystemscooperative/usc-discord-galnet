@@ -39,7 +39,7 @@ const intervalFunction = async () => {
     }
   }
 
-  setTimeout(intervalFunction, 10800000);
+  setTimeout(intervalFunction, 600000);
 };
 
 const pollAPI = async () => {
