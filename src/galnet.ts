@@ -19,7 +19,8 @@ const intervalFunction = async () => {
   if (response) {
     const articles = await getNewArticles(response);
     if (articles) {
-      if (articles.newArticles.length > 1) {
+      console.log(articles);
+      if (articles.newArticles.length > 0) {
         for (const article of articles.newArticles) {
           for (const webhook of articles.webhooks) {
             await postToWebhook(article, webhook);
@@ -57,8 +58,6 @@ const getNewArticles = async (unprocessedData: IGalNetNewsArticle[]) => {
   const newLine = /\n/g;
   const lastNewLine = /\n$/;
 
-  // console.log(unprocessedData);
-
   const processedData = unprocessedData.map((data) => {
     const updatedString = data.body
       .replace('<p>', '')
@@ -72,6 +71,7 @@ const getNewArticles = async (unprocessedData: IGalNetNewsArticle[]) => {
 
   const latestID: { _id: ObjectID; latestID: number; webhooks: string[] }[] =
     (await getFromMongo()) ?? [];
+
   if (latestID && latestID.length > 0) {
     const newArticles = processedData.filter(
       (x) => x.id > latestID[0].latestID
