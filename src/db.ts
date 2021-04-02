@@ -2,7 +2,7 @@ import { MongoClient } from 'mongodb';
 
 const username = encodeURIComponent(process.env.MONGOUSER as string);
 const userpass = encodeURIComponent(process.env.MONGOPASS as string);
-const connectionString = `mongodb+srv://${username}:${userpass}@cluster0.xup6s.mongodb.net/?retryWrites=true&w=majority`;
+const connectionString = `mongodb+srv://${username}:${userpass}@admiralfeb.xup6s.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(connectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
